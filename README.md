@@ -16,3 +16,4 @@
 - AWS Glue
     - For creating ETL job with preprocessing logic to clean the gathered data
 
+![Architecture diagram](Images/arch.png)
