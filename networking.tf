@@ -10,7 +10,7 @@ resource "aws_subnet" "ng_public_subnet" {
   ]
 
   # VPC in which the subnet has to be created
-  vpc_id = aws_vpc.e2e_ds_app.id
+  vpc_id     = aws_vpc.e2e_ds_app.id
   cidr_block = var.public_subnet_cidr_block
   map_public_ip_on_launch = true
 }
@@ -21,6 +21,6 @@ resource "aws_subnet" "agg_glue_private_subnet" {
     aws_subnet.ng_public_subnet
   ]
 
-  vpc_id = aws_vpc.e2e_ds_app.id
+  vpc_id     = aws_vpc.e2e_ds_app.id
   cidr_block = var.private_subnet_cidr_block
 }
