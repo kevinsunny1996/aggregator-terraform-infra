@@ -30,10 +30,17 @@ variable "project_name" {
 #    default = "mlflow"
 # }
 
-# variable "base_cidr_block" {
-#    default = "10.0.0.0"
-# }
+variable "vpc_cidr_block" {
+  default = "10.0.0.0/16"
+}
 
+variable "public_subnet_cidr_block" {
+  default = "192.168.0.0/24"
+}
+
+variable "private_subnet_cidr_block" {
+  default = "192.168.1.0/24"
+}
 # variable "log_group_name" {
 #    default = "ecs/fargate"
 # }
