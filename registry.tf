@@ -42,3 +42,22 @@ resource "aws_ecr_repository_policy" "agg_repo_policy" {
   policy = data.aws_iam_policy_document.ecr_access_policy.json
 }
 
+resource "aws_ecr_repository" "mlflow_server" {
+  name = "${var.ml_artifact_project_name}"
+}
+
+resource "aws_ecr_repository_policy" "mlflow_server_policy" {
+  repository = aws_ecr_repository.mlflow_server.name
+
+  policy = data.aws_iam_policy_document.ecr_access_policy.json
+}
+
+resource "aws_ecr_repository" "airflow_server" {
+  name = "${var.orch_project_name}"
+}
+
+resource "aws_ecr_repository_policy" "airflow_server_policy" {
+  repository = aws_ecr_repository.airflow_server.name
+
+  policy = data.aws_iam_policy_document.ecr_access_policy.json
+}

@@ -22,13 +22,13 @@ variable "project_name" {
 #    default = ["us-east-1a", "us-east-1b", "us-east-1c"]
 # }
 
-# variable "orch_project_name" {
-#    default = "airflow"
-# }
+variable "orch_project_name" {
+   default = "airflow"
+}
 
-# variable "ml_artifact_project_name" {
-#    default = "mlflow"
-# }
+variable "ml_artifact_project_name" {
+   default = "mlflow"
+}
 
 variable "vpc_cidr_block" {
   default = "10.0.0.0/16"
@@ -41,9 +41,10 @@ variable "public_subnet_cidr_block" {
 variable "private_subnet_cidr_block" {
   default = "192.168.1.0/24"
 }
-# variable "log_group_name" {
-#    default = "ecs/fargate"
-# }
+
+variable "log_group_name" {
+   default = "ecs/fargate"
+}
 
 # variable "image_version" {
 #    default = "latest"
