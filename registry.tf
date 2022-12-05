@@ -5,22 +5,22 @@ data "aws_iam_policy_document" "ecr_access_policy" {
 
   statement {
     sid = "New Policy"
-    
+
     actions = [
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:BatchGetImage",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:PutImage",
-        "ecr:InitiateLayerUpload",
-        "ecr:UploadLayerPart",
-        "ecr:CompleteLayerUpload",
-        "ecr:DescribeRepositories",
-        "ecr:GetRepositoryPolicy",
-        "ecr:ListImages",
-        "ecr:DeleteRepository",
-        "ecr:BatchDeleteImage",
-        "ecr:SetRepositoryPolicy",
-        "ecr:DeleteRepositoryPolicy"
+      "ecr:GetDownloadUrlForLayer",
+      "ecr:BatchGetImage",
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:PutImage",
+      "ecr:InitiateLayerUpload",
+      "ecr:UploadLayerPart",
+      "ecr:CompleteLayerUpload",
+      "ecr:DescribeRepositories",
+      "ecr:GetRepositoryPolicy",
+      "ecr:ListImages",
+      "ecr:DeleteRepository",
+      "ecr:BatchDeleteImage",
+      "ecr:SetRepositoryPolicy",
+      "ecr:DeleteRepositoryPolicy"
     ]
 
     principals {
@@ -33,7 +33,7 @@ data "aws_iam_policy_document" "ecr_access_policy" {
 
 
 resource "aws_ecr_repository" "agg_repo" {
-  name = "${var.project_name}"
+  name = var.project_name
 }
 
 resource "aws_ecr_repository_policy" "agg_repo_policy" {
@@ -43,7 +43,7 @@ resource "aws_ecr_repository_policy" "agg_repo_policy" {
 }
 
 resource "aws_ecr_repository" "mlflow_server" {
-  name = "${var.ml_artifact_project_name}"
+  name = var.ml_artifact_project_name
 }
 
 resource "aws_ecr_repository_policy" "mlflow_server_policy" {
@@ -53,7 +53,7 @@ resource "aws_ecr_repository_policy" "mlflow_server_policy" {
 }
 
 resource "aws_ecr_repository" "airflow_server" {
-  name = "${var.orch_project_name}"
+  name = var.orch_project_name
 }
 
 resource "aws_ecr_repository_policy" "airflow_server_policy" {

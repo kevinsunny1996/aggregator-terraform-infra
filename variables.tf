@@ -1,5 +1,5 @@
 variable "aws_region" {
-   default = "us-east-1"
+  default = "us-east-1"
 }
 
 variable "project_tags" {
@@ -12,7 +12,7 @@ variable "project_tags" {
 
 variable "project_name" {
   description = "Name of the project"
-  default = "pricing-aggregator"
+  default     = "pricing-aggregator"
 }
 
 
@@ -23,11 +23,11 @@ variable "project_name" {
 # }
 
 variable "orch_project_name" {
-   default = "airflow"
+  default = "airflow"
 }
 
 variable "ml_artifact_project_name" {
-   default = "mlflow"
+  default = "mlflow"
 }
 
 variable "vpc_cidr_block" {
@@ -43,7 +43,7 @@ variable "private_subnet_cidr_block" {
 }
 
 variable "log_group_name" {
-   default = "ecs/fargate"
+  default = "ecs/fargate"
 }
 
 # variable "image_version" {
