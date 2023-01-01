@@ -30,6 +30,22 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.48.0"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 2.10"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = ">= 2.4.1"
+    }
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = ">= 1.14"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.1"
+    }
   }
 
   # Uncomment this code and run terraform init to get the local state transferred to S3
