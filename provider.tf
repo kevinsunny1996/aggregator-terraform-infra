@@ -16,7 +16,7 @@ provider "helm" {
   }
 }
 
-provider "kubectl" {
+provider "gavinbunney/kubectl" {
   apply_retry_count      = 10
   host                   = module.eks_bp.eks_cluster_endpoint
   cluster_ca_certificate = base64decode(module.eks_bp.eks_cluster_certificate.certificate_authority_data)
