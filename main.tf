@@ -291,13 +291,13 @@ resource "aws_security_group" "efs" {
   description = "Allow Inbound NFS traffic to Private subnets in VPC"
   vpc_id      = module.vpc.vpc_id
 
-  ingress = [{
+  ingress {
     cidr_blocks = [module.vpc.private_subnets_cidr_blocks]
     description = "Allow NFS 2049 / TCP"
     from_port   = 2049
     protocol    = "tcp"
     to_port     = 2049
-  }]
+  }
 
   tags = local.tags
 
