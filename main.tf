@@ -292,7 +292,7 @@ resource "aws_security_group" "efs" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    cidr_blocks = [module.vpc.private_subnets_cidr_blocks]
+    cidr_blocks = module.vpc.private_subnets_cidr_blocks
     description = "Allow NFS 2049 / TCP"
     from_port   = 2049
     protocol    = "tcp"
