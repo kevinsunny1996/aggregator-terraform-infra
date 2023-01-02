@@ -22,16 +22,28 @@ variable "project_name" {
 #    default = ["us-east-1a", "us-east-1b", "us-east-1c"]
 # }
 
-variable "orch_project_name" {
-  default = "airflow"
+variable "name" {
+  description = "Name of VPC and EKS cluster"
+  type        = string
+  default     = "aggregator-data-pipeline"
+}
+
+variable "eks_cluster_version" {
+  description = "EKS Cluster Version"
+  type        = string
+  default     = "1.23"
 }
 
 variable "ml_artifact_project_name" {
-  default = "mlflow"
+  description = "MLFlow Project Name"
+  type        = string
+  default     = "mlflow"
 }
 
 variable "vpc_cidr_block" {
-  default = "10.0.0.0/16"
+  description = "VPC CIDR Block"
+  type        = string
+  default     = "10.0.0.0/16"
 }
 
 variable "public_subnet_cidr_block" {
