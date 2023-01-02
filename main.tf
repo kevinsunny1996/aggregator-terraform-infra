@@ -214,7 +214,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: ${local.airflow_webserver_secret_name}
-    namespace: ${local.airflow_irsa.namespace}
+    namespace: ${module.airflow_irsa.namespace}
 type: Opaque
 data:
     webserver-secret-key: ${base64encode(aws_secretsmanager_secret_version.airflow_webserver.secret_string)}
