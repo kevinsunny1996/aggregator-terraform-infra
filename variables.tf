@@ -40,7 +40,7 @@ variable "ml_artifact_project_name" {
   default     = "mlflow"
 }
 
-variable "vpc_cidr_block" {
+variable "vpc_cidr" {
   description = "VPC CIDR Block"
   type        = string
   default     = "10.0.0.0/16"
