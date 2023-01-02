@@ -141,7 +141,7 @@ module "airflow_s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 3.0"
 
-  bucket = "airflow-logs-${data.aws_caller_identity.current.account_id}"
+  bucket = "airflow-logs-${data.aws_caller_identity.current_caller.account_id}"
   acl    = "private"
 
   force_destroy = true
