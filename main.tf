@@ -113,7 +113,7 @@ module "db" {
   db_name                = local.airflow_name
   username               = local.airflow_name
   create_random_password = false
-  password               = sensitive(aws_secretsmanager_secret_version.postgres.secret_string)
+  password               = sensitive(aws_secretsmanager_secret_version.pgpass.secret_string)
   port                   = 5432
 
   multi_az               = false
@@ -169,36 +169,36 @@ module "airflow_s3_bucket" {
 # --------------------------------------------------------------------------------------------------
 # Airflow metadata DB master password
 # --------------------------------------------------------------------------------------------------
-resource "random_password" "postgres" {
+resource "random_password" "pgpass" {
   length  = 16
   special = false
 }
 
-resource "aws_secretsmanager_secret" "postgres" {
+resource "aws_secretsmanager_secret" "pgpass" {
   name                    = "postgres"
   recovery_window_in_days = 0
 }
 
-resource "aws_secretsmanager_secret_version" "postgres" {
-  secret_id     = aws_secretsmanager_secret.postgres.id
-  secret_string = random_password.postgres.result
+resource "aws_secretsmanager_secret_version" "pgpass" {
+  secret_id     = aws_secretsmanager_secret.pgpass.id
+  secret_string = random_password.pgpass.result
 }
 
 # --------------------------------------------------------------------------------------------------
 # Airflow Webserver Secret
 # --------------------------------------------------------------------------------------------------
-resource "random_id" "airflow_webserver" {
+resource "random_id" "airflow_ws" {
   byte_length = 16
 }
 
-resource "aws_secretsmanager_secret" "airflow_webserver" {
+resource "aws_secretsmanager_secret" "airflow_ws" {
   name                    = "airflow_webserver_secret_key"
   recovery_window_in_days = 0
 }
 
-resource "aws_secretsmanager_secret_version" "airflow_webserver" {
-  secret_id     = aws_secretsmanager_secret.airflow_webserver.id
-  secret_string = random_id.airflow_webserver.hex
+resource "aws_secretsmanager_secret_version" "airflow_ws" {
+  secret_id     = aws_secretsmanager_secret.airflow_ws.id
+  secret_string = random_id.airflow_ws.hex
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -217,7 +217,7 @@ metadata:
     namespace: ${module.airflow_irsa.namespace}
 type: Opaque
 data:
-    webserver-secret-key: ${base64encode(aws_secretsmanager_secret_version.airflow_webserver.secret_string)}
+    webserver-secret-key: ${base64encode(aws_secretsmanager_secret_version.airflow_ws.secret_string)}
 YAML
 }
 
