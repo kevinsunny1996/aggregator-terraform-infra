@@ -105,7 +105,7 @@ module "db" {
   engine         = "postgres"
   engine_version = "14.5"
   family         = "postgres14"
-  instance_class = "db.m5.large"
+  instance_class = "db.t3.micro"
 
   storage_type      = "gp3"
   allocated_storage = 20
