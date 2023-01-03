@@ -52,7 +52,7 @@ terraform {
   backend "s3" {
     bucket  = "aggregator-infra-state"
     key     = "terraform.tfstate"
-    region  = local.region
+    region  = "us-east-1"
     encrypt = true
   }
 }
