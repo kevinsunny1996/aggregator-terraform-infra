@@ -1,6 +1,6 @@
 # S3 bucket to store TFState files in encrypted form without state locking
 resource "aws_s3_bucket" "terraform_backend" {
-  bucket = "aggregator-infra-state"
+  bucket        = "aggregator-infra-state"
   force_destroy = true
 }
 
