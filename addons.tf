@@ -49,7 +49,7 @@ module "eks_bp_k8s_addon" {
     set_sensitive = [
       {
         name  = "data.metadataConnection.pass"
-        value = aws_secretsmanager_secret_version.postgres.secret_string
+        value = aws_secretsmanager_secret_version.pgpass.secret_string
       }
     ]
   }
