@@ -1,11 +1,11 @@
 variable "gcp_region" {
   description = "Region for your GCP project to be located in"
-  default = "us-east1"
+  default     = "us-east1"
 }
 
 variable "owner_email" {
   description = "Owner email address"
-  default = "kevin.parasseril@gmail.com"
+  default     = "kevin.parasseril@gmail.com"
 }
 
 variable "project_tags" {
@@ -23,7 +23,7 @@ variable "project_name" {
 
 variable "project_id" {
   description = "Project ID for GCP Project"
-  default = "invertible-fin-374508"
+  default     = "invertible-fin-374508"
 }
 
 variable "ml_artifact_project_name" {
