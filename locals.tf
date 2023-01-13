@@ -1,17 +1,6 @@
 locals {
-  name   = var.name
-  region = var.aws_region
-
-  vpc_cidr                      = var.vpc_cidr
-  azs                           = slice(data.aws_availability_zones.available.names, 0, 3)
-  airflow_name                  = "airflow"
-  airflow_service_account       = "airflow-webserver-sa"
-  airflow_webserver_secret_name = "airflow-webserver-secret-key"
-  efs_storage_class             = "efs-sc"
-  efs_pvc                       = "airflowdags-pvc"
-  vpc_endpoints                 = ["autoscaling", "ecr.api", "ecr.dkr", "ec2", "ec2messages", "elasticloadbalancing", "sts", "kms", "logs", "ssm", "ssmmessages"]
-
-  tags = {
-    Blueprint = local.name
-  }
+  region = var.gcp_region
+  owner  = var.owner_email
+  name   = var.project_name
+  id     = var.project_id
 }

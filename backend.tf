@@ -1,22 +1,22 @@
-# S3 bucket to store TFState files in encrypted form without state locking
-resource "aws_s3_bucket" "terraform_backend" {
-  bucket        = "aggregator-infra-state"
-  force_destroy = true
-}
+module "gcs_buckets" {
+  source          = "terraform-google-modules/cloud-storage/google"
+  version         = "~> 3.4"
+  project_id      = local.id
+  location        = local.region
+  names           = ["terraform-state"]
+  prefix          = local.name
+  set_admin_roles = true
+  # admins = ["group:${local.owner}"]
+  versioning = {
+    terraform-state = true
+  }
+  bucket_admins = {
+    second = "user:${local.owner}"
+  }
 
-resource "aws_s3_bucket_versioning" "terraform_versioning" {
-  bucket = aws_s3_bucket.terraform_backend.id
-  versioning_configuration {
-    status = "Enabled"
+  labels = {
+    project_name      = local.name
+    project_workspace = local.id
   }
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_encrypt" {
-  bucket = aws_s3_bucket.terraform_backend.bucket
-
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
-  }
-}
