@@ -1,3 +1,11 @@
+resource "google_project_service" "compute" {
+  service = "compute.googleapis.com"
+}
+
+resource "google_project_service" "container" {
+  service = "container.googleapis.com"
+}
+
 module "airflow_gke" {
   source  = "terraform-google-modules/kubernetes-engine/google"
   version = "~> 24.1"
@@ -17,6 +25,11 @@ module "airflow_gke" {
   horizontal_pod_autoscaling = true
   filestore_csi_driver       = false
   release_channel            = "STABLE"
+
+  depends_on = [
+    google_project_service.compute,
+    google_project_service.container
+  ]
 
   node_pools = [
     {
