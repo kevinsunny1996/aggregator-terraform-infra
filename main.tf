@@ -40,7 +40,7 @@ module "airflow_gke" {
       max_count          = 5
       local_ssd_count    = 0
       spot               = false
-      disk_size_gb       = 8
+      disk_size_gb       = 10
       disk_type          = "pd-standard"
       image_type         = "COS_CONTAINERD"
       enable_gcfs        = false
