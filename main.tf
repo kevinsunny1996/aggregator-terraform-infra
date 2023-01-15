@@ -1,6 +1,6 @@
 resource "time_sleep" "gcp_wait_crm_api_enabling" {
   depends_on = [
-    google_project_service.gcp_resource_manager_api
+    google_project_service.gcp_resource_manager
   ]
 
   create_duration = "1m"
