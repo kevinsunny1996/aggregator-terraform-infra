@@ -19,4 +19,3 @@ module "gcs_buckets" {
     project_workspace = local.id
   }
 }
-
