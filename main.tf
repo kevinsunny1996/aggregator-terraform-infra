@@ -82,6 +82,6 @@ module "airflow_gke" {
       "default-node-pool",
     ]
 
-    project = [local.project_name]
+    project = [local.name]
   }
 }
