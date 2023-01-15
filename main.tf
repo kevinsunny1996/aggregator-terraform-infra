@@ -1,11 +1,3 @@
-resource "time_sleep" "gcp_wait_crm_api_enabling" {
-  depends_on = [
-    google_project_service.gcp_resource_manager
-  ]
-
-  create_duration = "1m"
-}
-
 module "airflow_gke" {
   source  = "terraform-google-modules/kubernetes-engine/google"
   version = "~> 24.1"
