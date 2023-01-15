@@ -9,6 +9,10 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(module.airflow_gke.ca_certificate)
 }
 
+provider "time" {
+
+}
+
 # provider "helm" {
 
 # }
@@ -29,6 +33,12 @@ terraform {
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "~> 2.16.1"
+    }
+
+    time = {
+      source  = "hashicorp/time"
+      version = "~> 0.9.1"
+
     }
 
     # helm = {

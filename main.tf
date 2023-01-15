@@ -1,9 +1,9 @@
-resource "google_project_service" "compute" {
-  service = "compute.googleapis.com"
-}
+resource "time_sleep" "gcp_wait_crm_api_enabling" {
+  depends_on = [
+    google_project_service.gcp_resource_manager_api
+  ]
 
-resource "google_project_service" "container" {
-  service = "container.googleapis.com"
+  create_duration = "1m"
 }
 
 module "airflow_gke" {
@@ -98,3 +98,4 @@ module "airflow_gke" {
     project = [local.name]
   }
 }
+
