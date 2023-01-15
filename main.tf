@@ -3,6 +3,7 @@ module "airflow_gke" {
   version = "~> 24.1"
 
   description = "Airflow GKE cluster"
+  name = "${local.name}-gke-cluster"
 
   project_id                 = local.id
   region                     = local.region
