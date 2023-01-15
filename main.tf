@@ -18,10 +18,6 @@ module "airflow_gke" {
   filestore_csi_driver       = false
   release_channel            = "STABLE"
 
-  depends_on = [
-    google_project_service.compute,
-    google_project_service.container
-  ]
 
   node_pools = [
     {
