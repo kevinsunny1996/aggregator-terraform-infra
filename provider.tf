@@ -5,7 +5,7 @@ provider "google" {
 
 provider "kubernetes" {
   host                   = "https://${module.airflow_gke.endpoint}"
-  token                  = data.google_client_config.default.access_token
+  token                  = data.google_client_config.provider.access_token
   cluster_ca_certificate = base64decode(module.airflow_gke.ca_certificate)
 }
 
