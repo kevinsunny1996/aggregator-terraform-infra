@@ -2,8 +2,8 @@ resource "google_service_account" "kubernetes" {
   account_id = "kubernetes"
 }
 
-resource "google_container_node_pool" "mlops_gke" {
-  name       = "mlops_gke"
+resource "google_container_node_pool" "mlops" {
+  name       = "mlops"
   cluster    = google_container_cluster.airflow.id
   node_count = 1
 
