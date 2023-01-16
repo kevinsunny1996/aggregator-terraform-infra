@@ -2,8 +2,8 @@ data "google_project" "project" {
 
 }
 
-resource "google_container_cluster" "airflow_gke" {
-  name                     = "airflow_gke"
+resource "google_container_cluster" "airflow" {
+  name                     = "airflow"
   location                 = "${local.region}-a"
   remove_default_node_pool = true
   initial_node_count       = 1
