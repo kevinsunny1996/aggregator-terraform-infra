@@ -1,29 +1,29 @@
 resource "google_service_account" "kubernetes" {
-    account_id =   "kubernetes"
+  account_id = "kubernetes"
 }
 
 resource "google_container_node_pool" "mlops_gke" {
-    name = "mlops_gke"
-    cluster = google_container_cluster.airflow_gke.id
-    node_count = 1
+  name       = "mlops_gke"
+  cluster    = google_container_cluster.airflow_gke.id
+  node_count = 1
 
-    management {
-      auto_repair = true
-      auto_upgrade = true
+  management {
+    auto_repair  = true
+    auto_upgrade = true
+  }
+
+  node_config {
+    preemptible  = false
+    machine_type = "e2-small"
+
+    labels = {
+      role = "mlops cluster"
     }
 
-    node_config {
-      preemptible = false
-      machine_type = "e2-small"
+    service_account = google_service_account.kubernetes.email
 
-      labels = {
-        role = "mlops cluster"
-      }
+    oauth_scopes = ["https://www.googleapis.com/auth/cloud-platform"]
 
-      service_account = google_service_account.kubernetes.email
-
-      oauth_scopes = [ "https://www.googleapis.com/auth/cloud-platform" ]
-
-    }
+  }
 }
 
