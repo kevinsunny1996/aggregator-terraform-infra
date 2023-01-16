@@ -17,7 +17,7 @@ resource "google_container_node_pool" "mlops" {
     machine_type = "e2-small"
 
     labels = {
-      role = "mlops cluster"
+      role = "mlops_cluster"
     }
 
     service_account = google_service_account.kubernetes.email
