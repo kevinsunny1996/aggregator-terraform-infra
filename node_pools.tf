@@ -4,7 +4,7 @@ resource "google_service_account" "kubernetes" {
 
 resource "google_container_node_pool" "mlops_gke" {
   name       = "mlops_gke"
-  cluster    = google_container_cluster.airflow_gke.id
+  cluster    = google_container_cluster.airflow.id
   node_count = 1
 
   management {
