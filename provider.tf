@@ -9,9 +9,6 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(module.airflow_gke.ca_certificate)
 }
 
-provider "time" {
-
-}
 
 # provider "helm" {
 
