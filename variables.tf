@@ -3,6 +3,11 @@ variable "gcp_region" {
   default     = "us-central1"
 }
 
+variable "gcs_region" {
+  description = "Region for your GCS bucket is located in for storing tfstate files"
+  default     = "us-east1"
+}
+
 variable "owner_email" {
   description = "Owner email address"
   default     = "kevin.parasseril@gmail.com"
