@@ -17,7 +17,7 @@ resource "google_compute_router_nat" "nat" {
 resource "google_compute_address" "nat" {
   name         = "nat"
   address_type = "EXTERNAL"
-  network_tier = "STANDARD"
+  network_tier = "PREMIUM"
 
   depends_on = [
     google_project_service.compute

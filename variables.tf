@@ -1,6 +1,6 @@
 variable "gcp_region" {
   description = "Region for your GCP project to be located in"
-  default     = "us-east1"
+  default     = "us-central1"
 }
 
 variable "owner_email" {
