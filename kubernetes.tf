@@ -29,7 +29,7 @@ resource "google_container_cluster" "airflow_gke" {
   }
 
   ip_allocation_policy {
-    cluster_secondary_range_name = "k8s-pod-range"
+    cluster_secondary_range_name  = "k8s-pod-range"
     services_secondary_range_name = "k8s-service-range"
   }
 
