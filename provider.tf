@@ -4,21 +4,29 @@ provider "google" {
 }
 
 provider "kubernetes" {
-  host                   = "https://${module.airflow_gke.endpoint}"
+  host                   = "https://${google_container_cluster.airflow.endpoint}"
   token                  = data.google_client_config.provider.access_token
-  cluster_ca_certificate = base64decode(module.airflow_gke.ca_certificate)
+  cluster_ca_certificate = base64decode(google_container_cluster.airflow.ca_certificate)
 }
 
 
-# provider "helm" {
+provider "helm" {
+  kubernetes {
+    host                   = "https://${google_container_cluster.airflow.endpoint}"
+    token                  = data.google_client_config.provider.access_token
+    cluster_ca_certificate = base64decode(google_container_cluster.airflow.ca_certificate)
+  }
+}
 
-# }
+provider "kubectl" {
+  host                   = "https://${google_container_cluster.airflow.endpoint}"
+  token                  = data.google_client_config.provider.access_token
+  cluster_ca_certificate = base64decode(google_container_cluster.airflow.ca_certificate)
+}
 
-# provider "kubectl" {
-#   host = "https://${module.gke.endpoint}"
-#   token = data.google_client_config.default.access_token
-#   cluster_ca_certificate = base64decode(module.gke.ca_certificate)
-# }
+provider "random" {
+  
+}
 
 terraform {
   required_providers {
@@ -38,15 +46,20 @@ terraform {
 
     }
 
-    # helm = {
-    #   source = "hashicorp/helm"
-    #   version = "~> 2.8.0"
-    # }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.8.0"
+    }
 
-    # kubectl = {
-    #   source = "gavinbunney/kubectl"
-    #   version = "~> 1.14.0"
-    # }
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = "~> 1.14.0"
+    }
+
+    random = {
+      source = "hashicorp/random"
+      version = "~> 3.4.0" 
+    }
 
   }
 
