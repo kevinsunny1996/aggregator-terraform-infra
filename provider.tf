@@ -25,7 +25,7 @@ provider "kubectl" {
 }
 
 provider "random" {
-  
+
 }
 
 terraform {
@@ -57,8 +57,8 @@ terraform {
     }
 
     random = {
-      source = "hashicorp/random"
-      version = "~> 3.4.0" 
+      source  = "hashicorp/random"
+      version = "~> 3.4.0"
     }
 
   }
