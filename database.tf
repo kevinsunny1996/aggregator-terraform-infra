@@ -7,6 +7,10 @@ resource "random_password" "airflow_db_password" {
   length           = 16
   special          = true
   override_special = "!#$%&*()-_=+[]{}<>:?"
+
+  lifecycle {
+    create_before_destroy = false
+  }
 }
 # DB user
 resource "google_sql_user" "airflow_user" {
@@ -16,8 +20,8 @@ resource "google_sql_user" "airflow_user" {
 }
 
 resource "google_secret_manager_secret_version" "airflow_db" {
-  secret_id = "metadata_db_password"
-  secret    = random_password.airflow_db_password.result
+  secret_data = "metadata_db_password"
+  secret      = random_password.airflow_db_password.id
 }
 
 # Airflow Metadata DB
