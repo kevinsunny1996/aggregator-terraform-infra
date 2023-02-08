@@ -1,13 +1,7 @@
-resource "google_project_service" "compute" {
-  service = "compute.googleapis.com"
+resource "google_project_service" "composer_api" {
+  provider = google
+  project = local.id
+  service = "composer.googleapis.com"
 
-  disable_dependent_services = true
-}
-
-resource "google_project_service" "container" {
-  service = "container.googleapis.com"
-}
-
-resource "google_project_service" "secret" {
-  service = "secretmanager.googleapis.com"
+  disable_on_destroy = false
 }
