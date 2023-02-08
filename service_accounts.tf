@@ -1,5 +1,5 @@
 resource "google_service_account" "airflow_composer_service_account" {
-  account_id   = "airflow-composer-service-account"
+  account_id   = "composer-sa"
   display_name = "Composer Service Account"
 }
 
