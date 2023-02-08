@@ -10,7 +10,7 @@ resource "google_project_iam_member" "airflow_composer_service_account" {
 }
 
 resource "google_service_account_iam_member" "airflow_composer_service_account" {
-  service_service_account_id = google_service_account.airflow_composer_service_account.name
+  service_account_id = google_service_account.airflow_composer_service_account.name
   role                       = "roles/composer.ServiceAgentV2Ext"
   member                     = "serviceAccount:service-374508@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
