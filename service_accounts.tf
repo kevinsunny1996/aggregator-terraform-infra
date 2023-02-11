@@ -12,5 +12,5 @@ resource "google_project_iam_member" "airflow_composer_service_account" {
 resource "google_service_account_iam_member" "airflow_composer_service_account" {
   service_account_id = google_service_account.airflow_composer_service_account.name
   role               = "roles/composer.ServiceAgentV2Ext"
-  member             = "serviceAccount:service-374508@cloudcomposer-accounts.iam.gserviceaccount.com"
+  member             = "serviceAccount:service-${local.number}@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
