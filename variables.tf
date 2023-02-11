@@ -31,6 +31,11 @@ variable "project_id" {
   default     = "invertible-fin-374508"
 }
 
+variable "project_number" {
+  description = "Project Number for your workspace"
+  default     = "466133766910"
+}
+
 variable "ml_artifact_project_name" {
   description = "MLFlow Project Name"
   type        = string

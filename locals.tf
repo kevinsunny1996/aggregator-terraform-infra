@@ -4,4 +4,5 @@ locals {
   owner     = var.owner_email
   name      = var.project_name
   id        = var.project_id
+  number    = var.project_number
 }
