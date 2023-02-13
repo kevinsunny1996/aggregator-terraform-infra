@@ -3,22 +3,20 @@ resource "google_service_account" "airflow_composer_service_account" {
   display_name = "Composer Service Account"
 }
 
-resource "google_project_iam_member" "airflow_composer_service_account" {
+resource "google_project_iam_member" "airflow_composer_worker" {
   project = local.id
-  member  = format("serviceAccount:%s", google_service_account.airflow_composer_service_account.email)
   role    = "roles/composer.worker"
-
-  depends_on = [
-    google_service_account.airflow_composer_service_account
-  ]
+  member  = format("serviceAccount:%s", google_service_account.airflow_composer_service_account.email)
 }
 
-resource "google_service_account_iam_member" "airflow_composer_service_account" {
-  service_account_id = google_service_account.airflow_composer_service_account.name
-  role               = "roles/composer.ServiceAgentV2Ext"
-  member             = "serviceAccount:service-${local.number}@cloudcomposer-accounts.iam.gserviceaccount.com"
+resource "google_project_iam_member" "airflow_composer_v2_extension" {
+  project = local.id
+  role    = "roles/composer.ServiceAgentV2Ext"
+  member  = "serviceAccount:service-${data.google_project.e2eproject.number}@cloudcomposer-accounts.iam.gserviceaccount.com"
+}
 
-  depends_on = [
-    google_service_account.airflow_composer_service_account
-  ]
+resource "google_project_iam_member" "airflow_composer_sa_user" {
+  project = local.id
+  role    = "roles/iam.ServiceAccountUser"
+  member  = format("serviceAccount:%s", google_service_account.airflow_composer_service_account.email)
 }
