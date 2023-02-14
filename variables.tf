@@ -41,3 +41,14 @@ variable "ml_artifact_project_name" {
   type        = string
   default     = "mlflow"
 }
+
+variable "composer_ip_ranges" {
+  type        = map(string)
+  description = "Composer 2 runs on GKE, so inform here the IP ranges you want to use"
+  default = {
+    pods     = "10.0.0.0/22"
+    services = "10.0.4.0/24"
+    nodes    = "10.0.6.0/24"
+    master   = "10.0.7.0/28"
+  }
+}
