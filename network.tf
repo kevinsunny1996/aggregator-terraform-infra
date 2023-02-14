@@ -15,7 +15,7 @@ module "vpc" {
   ]
 
   secondary_ranges = {
-    "${local.name}-secondary" = [
+    "${local.name}" = [
       {
         range_name    = "pods"
         ip_cidr_range = var.composer_ip_ranges.pods
