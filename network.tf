@@ -2,12 +2,12 @@ module "vpc" {
   source       = "terraform-google-modules/network/google"
   version      = "~> 6.0"
   project_id   = local.id
-  network_name = local.name
+  network_name = "${local.name}-network"
   routing_mode = "GLOBAL"
 
   subnets = [
     {
-      subnet_name           = "subnet-${local.name}"
+      subnet_name           = local.name
       subnet_ip             = var.composer_ip_ranges.nodes
       subnet_region         = local.region
       subnet_private_access = true
