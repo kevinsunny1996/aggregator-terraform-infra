@@ -26,6 +26,10 @@ module "vpc" {
       },
     ]
   }
+
+  depends_on = [
+    google_project_service.networking_api
+  ]
 }
 
 resource "google_compute_global_address" "service_range" {
