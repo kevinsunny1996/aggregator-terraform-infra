@@ -7,7 +7,7 @@ module "airflow_composer_v2" {
   composer_env_name        = local.name
   composer_service_account = google_service_account.airflow_composer_service_account.email
   image_version            = "composer-2.1.5-airflow-2.4.3"
-  environment_data         = "ENVIRONMENT_SIZE_SMALL"
+  environment_size         = "ENVIRONMENT_SIZE_SMALL"
 
   network                          = module.vpc.network_name
   subnetwork                       = local.name
