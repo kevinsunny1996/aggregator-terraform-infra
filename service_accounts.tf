@@ -17,6 +17,6 @@ resource "google_project_iam_member" "airflow_composer_v2_extension" {
 
 resource "google_project_iam_member" "airflow_composer_sa_user" {
   project = local.id
-  role    = "roles/iam.ServiceAccountUser"
+  role    = "roles/iam.serviceAccountUser"
   member  = format("serviceAccount:%s", google_service_account.airflow_composer_service_account.email)
 }
