@@ -8,14 +8,14 @@ module "gcs_api_extract" {
   location        = local.gs_region
   names           = ["rapidapi-genius-api-extracts"]
   prefix          = local.name
-  # set_admin_roles = true
-  # admins = ["group:${local.owner}"]
+  set_admin_roles = true
+  admins = ["group:${local.owner}"]
   versioning = {
     terraform-state = true
   }
-  # bucket_admins = {
-  #   second = "user:${local.owner}"
-  # }
+  bucket_admins = {
+    second = "user:${local.owner}"
+  }
 
   labels = {
     project_name      = local.name
