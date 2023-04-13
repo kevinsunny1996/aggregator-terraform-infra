@@ -9,7 +9,7 @@ module "gcs_api_extract" {
   names           = ["rapidapi-genius-api-extracts"]
   prefix          = local.name
   set_admin_roles = true
-  admins = ["group:${local.owner}"]
+  admins          = ["group:${local.owner}"]
   versioning = {
     terraform-state = true
   }
