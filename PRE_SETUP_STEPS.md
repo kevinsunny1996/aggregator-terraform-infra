@@ -44,19 +44,19 @@
 
 - Add an IAM policy binding to the tf-plan-sa service account, granting it the roles/iam.workloadIdentityUser role and mapping the GitHub Action event attributes to Google Cloud's principalSet format, with specific values for repository_name, actor, and event_name.
 
-<pre><code>gcloud iam service-accounts add-iam-policy-binding "tf-plan-sa@${PROJECT_ID}.iam.gserviceaccount.com"
---project="${PROJECT_ID}"
---role="roles/iam.workloadIdentityUser"
---member="principalSet://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/github/attribute.repository_name/GITHUB_REPO_NAME/attribute.actor/GITHUB_USER/attribute.event_name/pull_request"
-</code></pre>
+<pre><code>gcloud iam service-accounts add-iam-policy-binding "tf-plan-sa@${PROJECT_ID}.iam.gserviceaccount.com" \
+--project="${PROJECT_ID}" \
+--role="roles/iam.workloadIdentityUser" \
+--member="principalSet://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/github/attribute.repository_name/GITHUB_REPO_NAME/attribute.actor/GITHUB_USER/attribute.event_name/pull_request" \
+--role="roles/iam.serviceAccountTokenCreator"</code></pre>
 
 - Add an IAM policy binding to the tf-apply-sa service account, granting it the roles/iam.workloadIdentityUser role and mapping the GitHub Action workflow reference to Google Cloud's principalSet format, with specific values for workflow_ref.
 
-<pre><code>gcloud iam service-accounts add-iam-policy-binding "tf-apply-sa@${PROJECT_ID}.iam.gserviceaccount.com"
---project="${PROJECT_ID}"
---role="roles/iam.workloadIdentityUser"
---member="principalSet://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/github/attribute.workflow_ref/GITHUB_USER/GITHUB_REPO_NAME/.github/workflows/terraform.yaml@refs/heads/main"
-</code></pre>
+<pre><code>gcloud iam service-accounts add-iam-policy-binding "tf-apply-sa@${PROJECT_ID}.iam.gserviceaccount.com" \
+--project="${PROJECT_ID}" \
+--role="roles/iam.workloadIdentityUser" \
+--member="principalSet://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/github/attribute.workflow_ref/GITHUB_USER/GITHUB_REPO_NAME/.github/workflows/terraform.yaml@refs/heads/main" \
+--role="roles/iam.serviceAccountTokenCreator"</code></pre>
 
 - Note that you will need to replace the placeholder values for **PROJECT_ID**, **PROJECT_NUMBER**, **STATE_BUCKET**, **GITHUB_REPO_NAME**, and **GITHUB_USER** with your own values.
 
