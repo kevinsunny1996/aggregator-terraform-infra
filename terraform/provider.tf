@@ -27,9 +27,9 @@ terraform {
 
   }
 
-  # Comment out if storage needs to be removed and recreated again
-  # backend "gcs" {
-  #   bucket = "pricing-aggregator-us-east1-terraform-state"
-  #   # prefix = "terraform/state"
-  # }
+  Comment out if storage needs to be removed and recreated again
+  backend "gcs" {
+    bucket = "tf-state-tracker"
+    # prefix = "terraform/state"
+  }
 }
