@@ -51,7 +51,7 @@ jobs:
       - id: init
         name: Terraform Init
         working-directory: terraform
-        run: terraform init -input=false -backend-config="bucket=tf-remote-state"
+        run: terraform init -input=false -backend-config="bucket=tf-state-tracker"
 
       - id: validate
         name: Terraform Validate
