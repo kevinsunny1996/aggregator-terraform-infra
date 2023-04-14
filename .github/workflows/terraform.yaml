@@ -3,7 +3,7 @@ name: Terraform GCP Pipeline
 on:
   push:
     branches: 
-      - "build/**"
+      - "main"
     paths:
       - 'terraform/**'
       - '.github/workflows/terraform.yaml'
@@ -32,7 +32,7 @@ jobs:
           service_account: 'tf-plan@exemplary-tide-379122.iam.gserviceaccount.com'
 
       - id: 'applierAuth'
-        if: github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/main'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1.0.0'
         with:
@@ -96,6 +96,6 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        if: github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         working-directory: terraform
         run: terraform apply -auto-approve -input=false
