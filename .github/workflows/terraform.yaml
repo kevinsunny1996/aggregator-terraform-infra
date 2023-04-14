@@ -28,8 +28,7 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1.0.0'
         with:
-          workload_identity_provider: 'projects/221017926326/locations/global/workloadIdentityPools/github/*'
-          # workload_identity_provider: 'projects/221017926326/locations/global/workloadIdentityPools/github/providers/github'
+          workload_identity_provider: 'projects/221017926326/locations/global/workloadIdentityPools/github/providers/github'
           service_account: 'tf-plan@exemplary-tide-379122.iam.gserviceaccount.com'
 
       - id: 'applierAuth'
@@ -37,13 +36,12 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1.0.0'
         with:
-          workload_identity_provider: 'projects/221017926326/locations/global/workloadIdentityPools/github/*'
-          # workload_identity_provider: 'projects/221017926326/locations/global/workloadIdentityPools/github/providers/github'
+          workload_identity_provider: 'projects/221017926326/locations/global/workloadIdentityPools/github/providers/github'
           service_account: 'tf-apply@exemplary-tide-379122.iam.gserviceaccount.com'
 
       - uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.4.0
+          terraform_version: 1.4.5
 
       - id: fmt
         name: Terraform fmt
