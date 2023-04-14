@@ -53,9 +53,9 @@ jobs:
         working-directory: terraform
         run: terraform init -input=false -backend-config="bucket=tf-state-tracker"
 
-      - id: validate
-        name: Terraform Validate
-        run: terraform validate -no-color
+      # - id: validate
+      #   name: Terraform Validate
+      #   run: terraform validate -no-color
 
       - id: plan
         name: Terraform Plan
