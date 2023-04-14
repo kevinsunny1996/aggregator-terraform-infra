@@ -1,4 +1,4 @@
-name: Terraform Workflow Demo
+name: Terraform GCP Pipeline
 
 on:
   push:
