@@ -32,7 +32,7 @@ jobs:
           service_account: 'tf-plan@exemplary-tide-379122.iam.gserviceaccount.com'
 
       - id: 'applierAuth'
-        if: github.ref == 'refs/heads/main'
+        if: github.event_name == 'pull_request'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1.0.0'
         with:
