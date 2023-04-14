@@ -71,7 +71,7 @@
 gcloud iam service-accounts add-iam-policy-binding "tf-plan@${PROJECT_ID}.iam.gserviceaccount.com" \
 --project="${PROJECT_ID}" \
 --role="roles/iam.workloadIdentityUser" \
---member="principalSet://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/github/attribute.repository_name/aggregator-terraform-infra/attribute.actor/kevinsunny1996/attribute.event_name/pull_request" \
+--member="principalSet://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/github/attribute.workflow_ref/kevinsunny1996/aggregator-terraform-infra/attribute.event_name/pull_request" \
 --role="roles/iam.serviceAccountTokenCreator"
 
 gcloud iam service-accounts add-iam-policy-binding "tf-apply-sa@${PROJECT_ID}.iam.gserviceaccount.com" \
