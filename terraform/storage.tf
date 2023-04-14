@@ -6,7 +6,7 @@ module "gcs_api_extract" {
   version         = "~> 3.4"
   project_id      = local.id
   location        = local.gs_region
-  names           = ["rapidapi-genius-api-extract"]
+  names           = ["rapidapi-genius-api-extracts"]
   prefix          = local.name
   set_admin_roles = true
   admins          = ["group:${local.owner}"]
