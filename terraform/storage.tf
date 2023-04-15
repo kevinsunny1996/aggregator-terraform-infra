@@ -6,10 +6,10 @@ module "gcs_api_extract" {
   version         = "~> 3.4"
   project_id      = local.id
   location        = local.gs_region
-  names           = ["rapidapi-genius-api-extracts"]
+  names           = ["rapidapi-genius-api-extract"]
   prefix          = local.name
   set_admin_roles = true
-  admins          = ["group:${local.owner}"]
+  #   admins          = ["group:${local.owner}"]
   versioning = {
     terraform-state = true
   }
