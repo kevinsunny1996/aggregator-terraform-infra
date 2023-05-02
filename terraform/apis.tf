@@ -14,3 +14,11 @@
 #   disable_on_destroy = false
 # }
 
+# Secrets manager API enabling to store keys
+resource "google_project_service" "secret_mgr_api" {
+  provider = google
+  project  = local.id
+  service  = "secretmanager.googleapis.com"
+
+  disable_on_destroy = false
+}
