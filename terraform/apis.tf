@@ -22,3 +22,12 @@ resource "google_project_service" "secret_mgr_api" {
 
   disable_on_destroy = false
 }
+
+# Container API to store cloud run images
+resource "google_project_service" "container_api" {
+  provider = google
+  project  = local.id
+  service  = "container.googleapis.com"
+
+  disable_on_destroy = false
+}
