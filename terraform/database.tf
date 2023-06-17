@@ -7,12 +7,12 @@ resource "google_sql_database_instance" "main" {
   settings {
     tier = "db-f1-micro"
     advanced_machine_features {
-      disk_size = 10
-      disk_type = "PD_HDD"
+      disk_size         = 10
+      disk_type         = "PD_HDD"
       activation_policy = "ON_DEMAND"
     }
 
   }
 
-  depends_on = [ google_project_service.cloud_sql_api ]
+  depends_on = [google_project_service.cloud_sql_api]
 }
