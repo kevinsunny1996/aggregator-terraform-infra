@@ -9,4 +9,6 @@ resource "google_sql_database_instance" "main" {
     # type. See argument reference below.
     tier = "db-f1-micro"
   }
+
+  depends_on = [ google_project_service.cloud_sql_api ]
 }
