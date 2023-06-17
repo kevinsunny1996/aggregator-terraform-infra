@@ -1,12 +1,37 @@
 #############################################################################################################
-# GCS Bucket to store extracted parquet files from RapidAPI
+# GCS Bucket to store extracted files from Spotify Web API
 #############################################################################################################
 module "gcs_api_extract" {
   source          = "terraform-google-modules/cloud-storage/google"
   version         = "~> 3.4"
   project_id      = local.id
   location        = local.gs_region
-  names           = ["rapidapi-genius-api-extracts"]
+  names           = ["spotify-web-api-extracts"]
+  prefix          = local.name
+  set_admin_roles = true
+  #   admins          = ["group:${local.owner}"]
+  versioning = {
+    terraform-state = true
+  }
+  bucket_admins = {
+    second = "user:${local.owner}"
+  }
+
+  labels = {
+    project_name      = local.name
+    project_workspace = local.id
+  }
+}
+
+#############################################################################################################
+# GCS Bucket for Composer Backend
+#############################################################################################################
+module "composer_gcs_backend" {
+  source          = "terraform-google-modules/cloud-storage/google"
+  version         = "~> 3.4"
+  project_id      = local.id
+  location        = local.gs_region
+  names           = ["composer-storage-backend"]
   prefix          = local.name
   set_admin_roles = true
   #   admins          = ["group:${local.owner}"]

@@ -32,3 +32,12 @@ resource "google_project_service" "container_api" {
 
   disable_on_destroy = false
 }
+
+# Cloud SQL API to create Composer backend
+resource "google_project_service" "cloud_sql_api" {
+  provider = google
+  project  = local.id
+  service  = "sqladmin.googleapis.com"
+
+  disable_on_destroy = false
+}
