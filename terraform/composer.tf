@@ -34,24 +34,3 @@
 #     google_project_iam_member.airflow_composer_v2_extension
 #   ]
 # }  
-
-# Composer instance for Airflow 
-resource "google_composer_environment" "composer_environment" {
-  name   = local.name
-  region = local.region
-  config {
-    node_count = 3
-    node_config {
-      machine_type = "n1-standard-1"
-      disk_size_gb = 50
-      preemptible  = true
-    }
-
-    # https://cloud.google.com/composer/docs/concepts/versioning/composer-versions
-    software_config {
-      image_version = "composer-2.3.0-airflow-2.5.1"
-    }
-
-  }
-  depends_on = [google_storage_bucket.composer_bucket, google_sql_database_instance.composer_backend, google_project_service.composer_api]
-}

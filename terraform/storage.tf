@@ -26,24 +26,24 @@ module "gcs_api_extract" {
 #############################################################################################################
 # GCS Bucket for Composer Backend
 #############################################################################################################
-module "composer_gcs_backend" {
-  source          = "terraform-google-modules/cloud-storage/google"
-  version         = "~> 3.4"
-  project_id      = local.id
-  location        = local.gs_region
-  names           = ["composer-storage-backend"]
-  prefix          = local.name
-  set_admin_roles = true
-  #   admins          = ["group:${local.owner}"]
-  versioning = {
-    terraform-state = true
-  }
-  bucket_admins = {
-    second = "user:${local.owner}"
-  }
+# module "composer_gcs_backend" {
+#   source          = "terraform-google-modules/cloud-storage/google"
+#   version         = "~> 3.4"
+#   project_id      = local.id
+#   location        = local.gs_region
+#   names           = ["composer-storage-backend"]
+#   prefix          = local.name
+#   set_admin_roles = true
+#   #   admins          = ["group:${local.owner}"]
+#   versioning = {
+#     terraform-state = true
+#   }
+#   bucket_admins = {
+#     second = "user:${local.owner}"
+#   }
 
-  labels = {
-    project_name      = local.name
-    project_workspace = local.id
-  }
-}
+#   labels = {
+#     project_name      = local.name
+#     project_workspace = local.id
+#   }
+# }
