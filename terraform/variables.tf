@@ -10,7 +10,7 @@ variable "gcs_region" {
 
 variable "owner_email" {
   description = "Owner email address"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "project_tags" {
@@ -28,12 +28,12 @@ variable "project_name" {
 
 variable "project_id" {
   description = "Project ID for GCP Project"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "project_number" {
   description = "Project Number for your workspace"
-  sensitive = true
+  sensitive   = true
 }
 
 # variable "ml_artifact_project_name" {
