@@ -28,7 +28,7 @@ resource "random_password" "flyte_db_password" {
 }
 
 resource "google_sql_user" "flyte_db_user" {
-  name = "postgres"
+  name     = "postgres"
   instance = google_sql_database_instance.flyte_db_backend.name
   password = random_password.flyte_db_password.result
 }
