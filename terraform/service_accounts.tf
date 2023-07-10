@@ -31,6 +31,7 @@ resource "google_project_iam_custom_role" "flyte_backend_role" {
 }
 
 resource "google_project_iam_binding" "flyte_backend_role_binding" {
+  project = local.id
   role    = google_project_iam_custom_role.flyte_backend_role.name
   members = ["serviceAccount:${google_service_account.flyte_service_account.email}"]
 }
@@ -40,4 +41,3 @@ resource "google_project_iam_member" "user_code_role_member" {
   role    = "roles/editor" # Adjust the role as needed
   member  = "serviceAccount:${google_service_account.user_code_service_account.email}"
 }
-
