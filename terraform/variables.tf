@@ -11,6 +11,7 @@ variable "gcs_region" {
 variable "owner_email" {
   description = "Owner email address"
   sensitive   = true
+  default = "kevinsunny1996@gmail.com"
 }
 
 variable "project_tags" {
