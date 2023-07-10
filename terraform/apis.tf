@@ -1,10 +1,11 @@
-# resource "google_project_service" "composer_api" {
-#   provider = google
-#   project  = local.id
-#   service  = "composer.googleapis.com"
+# Enable Composer v2 API
+resource "google_project_service" "composer_api" {
+  provider = google
+  project  = local.id
+  service  = "composer.googleapis.com"
 
-#   disable_on_destroy = false
-# }
+  disable_on_destroy = false
+}
 
 # resource "google_project_service" "networking_api" {
 #   provider = google
@@ -28,6 +29,15 @@ resource "google_project_service" "container_api" {
   provider = google
   project  = local.id
   service  = "container.googleapis.com"
+
+  disable_on_destroy = false
+}
+
+# Cloud SQL API to create Composer backend
+resource "google_project_service" "cloud_sql_api" {
+  provider = google
+  project  = local.id
+  service  = "sqladmin.googleapis.com"
 
   disable_on_destroy = false
 }

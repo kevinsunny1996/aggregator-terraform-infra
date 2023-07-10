@@ -60,7 +60,7 @@ jobs:
       - id: plan
         name: Terraform Plan
         working-directory: terraform
-        run: terraform plan -no-color
+        run: terraform plan -var='project_number=${{secrets.GCP_PROJECT_NUMBER}}' -var='project_id=${{secrets.GCP_PROJECT_ID}}' -no-color
         continue-on-error: true
 
       - uses: actions/github-script@v6
@@ -98,4 +98,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         working-directory: terraform
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -var='project_number=${{secrets.GCP_PROJECT_NUMBER}}' -var='project_id=${{secrets.GCP_PROJECT_ID}}' -auto-approve -input=false

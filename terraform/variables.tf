@@ -10,6 +10,7 @@ variable "gcs_region" {
 
 variable "owner_email" {
   description = "Owner email address"
+  sensitive   = true
   default     = "kevinsunny1996@gmail.com"
 }
 
@@ -28,12 +29,12 @@ variable "project_name" {
 
 variable "project_id" {
   description = "Project ID for GCP Project"
-  default     = "exemplary-tide-379122"
+  sensitive   = true
 }
 
 variable "project_number" {
   description = "Project Number for your workspace"
-  default     = "221017926326"
+  sensitive   = true
 }
 
 # variable "ml_artifact_project_name" {
