@@ -33,7 +33,16 @@ resource "google_project_service" "container_api" {
   disable_on_destroy = false
 }
 
-# Cloud SQL API to create Composer backend
+# Compute API for GKE cluster
+resource "google_project_service" "compute_api" {
+  provider = google
+  project  = local.id
+  service  = "compute.googleapis.com"
+
+  disable_on_destroy = false
+}
+
+# Cloud SQL API to create Flyte backend
 resource "google_project_service" "cloud_sql_api" {
   provider = google
   project  = local.id
