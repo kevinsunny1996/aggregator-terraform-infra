@@ -10,12 +10,9 @@ resource "google_sql_database_instance" "flyte_db_backend" {
     # ip_configuration {
     #   require_ssl = true
     # }
-    advanced_machine_features {
-      disk_size         = 10
-      disk_type         = "PD_HDD"
-      activation_policy = "ALWAYS"
-    }
-
+    disk_size         = 10
+    disk_type         = "PD_HDD"
+    activation_policy = "ALWAYS"
   }
 
   depends_on = [google_project_service.cloud_sql_api]
