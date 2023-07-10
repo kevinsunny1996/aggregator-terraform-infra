@@ -10,7 +10,7 @@ resource "google_service_account" "user_code_service_account" {
 }
 
 resource "google_project_iam_custom_role" "flyte_backend_role" {
-  role_id     = "flyte-backend-role"
+  role_id     = "flyteBackendRole"
   title       = "Flyte Backend Role"
   description = "Custom IAM role for the Flyte backend service"
 
@@ -36,7 +36,8 @@ resource "google_project_iam_binding" "flyte_backend_role_binding" {
 }
 
 resource "google_project_iam_member" "user_code_role_member" {
-  role   = "roles/editor" # Adjust the role as needed
-  member = "serviceAccount:${google_service_account.user_code_service_account.email}"
+  project = local.id
+  role    = "roles/editor" # Adjust the role as needed
+  member  = "serviceAccount:${google_service_account.user_code_service_account.email}"
 }
 
