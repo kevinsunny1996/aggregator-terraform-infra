@@ -12,7 +12,7 @@ resource "google_container_cluster" "flyte_cluster" {
 
   node_config {
     disk_size_gb = 10
-    disk_type = "pd-balanced"
+    disk_type    = "pd-balanced"
     ephemeral_storage_local_ssd_config {
       local_ssd_count = 0
     }
