@@ -9,7 +9,15 @@ resource "google_container_cluster" "flyte_cluster" {
       issue_client_certificate = false
     }
   }
-  depends_on = [google_project_service.compute_api, google_project_service.container_api]
+
+  node_config {
+    disk_size_gb = 10
+    disk_type = "pd-balanced"
+    ephemeral_storage_local_ssd_config {
+      local_ssd_count = 0
+    }
+  }
+  depends_on = [google_project_service.compute_api, google_project_service.container_api, google_container_node_pool.flyte_nodepool]
 }
 
 resource "google_container_node_pool" "flyte_nodepool" {
