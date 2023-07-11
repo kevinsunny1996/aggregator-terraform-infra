@@ -1,3 +1,3 @@
-# data "google_project" "e2eproject" {
+data "google_client_config" "default" {
 
-# }
+}
