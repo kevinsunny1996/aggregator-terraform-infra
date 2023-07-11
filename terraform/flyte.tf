@@ -31,6 +31,11 @@ resource "google_container_node_pool" "flyte_nodepool" {
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
     ]
+    disk_size_gb = 10
+    disk_type    = "pd-balanced"
+    ephemeral_storage_local_ssd_config {
+      local_ssd_count = 0
+    }
   }
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
 }
