@@ -10,6 +10,10 @@ resource "google_container_cluster" "flyte_cluster" {
     }
   }
 
+  ip_allocation_policy {
+
+  }
+
   node_config {
     disk_size_gb = 10
     disk_type    = "pd-balanced"
