@@ -1,9 +1,8 @@
 # TODO - Create GKE cluster post enabling relevant APIs 
 resource "google_container_cluster" "flyte_cluster" {
   name                     = "flyte-cluster"
-  location                 = local.region
+  location                 = "${local.region}-a"
   remove_default_node_pool = true
-  initial_node_count       = 1
   master_auth {
     client_certificate_config {
       issue_client_certificate = false
@@ -23,11 +22,11 @@ resource "google_container_cluster" "flyte_cluster" {
   }
 }
 
-resource "google_container_node_pool" "flyte_nodepool" {
-  name       = "flyte-node-pool"
-  location   = local.region
+resource "google_container_node_pool" "flyte_node_pool" {
+  name       = "flyte-np"
+  location   = "${local.region}-a"
   cluster    = google_container_cluster.flyte_cluster.name
-  node_count = 1
+  node_count = 2
   node_config {
     preemptible     = true
     machine_type    = "e2-micro"
