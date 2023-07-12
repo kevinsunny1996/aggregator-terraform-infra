@@ -1,7 +1,7 @@
 # TODO - Create GKE cluster post enabling relevant APIs 
 resource "google_container_cluster" "flyte_cluster" {
   name                     = "flyte-cluster"
-  location                 = "${local.region}-a"
+  location                 = local.region
   remove_default_node_pool = true
   master_auth {
     client_certificate_config {
