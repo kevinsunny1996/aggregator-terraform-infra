@@ -16,6 +16,7 @@ resource "google_container_cluster" "flyte_cluster" {
       local_ssd_count = 0
     }
   }
+  depends_on = [google_project_service.compute_api, google_project_service.container_api]
 }
 
 resource "google_container_node_pool" "flyte_node_pool" {
