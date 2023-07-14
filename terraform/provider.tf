@@ -7,6 +7,13 @@ provider "random" {
 
 }
 
+provider "helm" {
+  kubernetes {
+    host  = "https://${google_container_cluster.cluster.endpoint}"
+    token = data.google_client_config.default.access_token
+  }
+}
+
 terraform {
   required_providers {
     google = {
@@ -23,6 +30,11 @@ terraform {
     random = {
       source  = "hashicorp/random"
       version = "~> 3.5.1"
+    }
+
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.10.1"
     }
 
   }

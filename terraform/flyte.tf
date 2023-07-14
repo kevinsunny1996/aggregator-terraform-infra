@@ -35,3 +35,11 @@ resource "google_container_node_pool" "flyte_node_pool" {
   }
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
 }
+
+resource "helm_release" "flyte_single_cluster" {
+  name       = "flyte-test-setup"
+  namespace  = "flyte"
+  repository = "https://flyteorg.github.io/flyte"
+  chart      = "flyteorg/flyte-binary"
+  version    = "0.1.10"
+}
