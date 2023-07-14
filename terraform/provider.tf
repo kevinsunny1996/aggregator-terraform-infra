@@ -9,7 +9,7 @@ provider "random" {
 
 provider "helm" {
   kubernetes {
-    host  = "https://${google_container_cluster.cluster.endpoint}"
+    host  = "https://${google_container_cluster.flyte_cluster.endpoint}"
     token = data.google_client_config.default.access_token
   }
 }
