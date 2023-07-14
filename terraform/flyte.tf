@@ -40,6 +40,8 @@ resource "helm_release" "flyte_single_cluster" {
   name       = "flyte-test-setup"
   namespace  = "flyte"
   repository = "https://flyteorg.github.io/flyte"
-  chart      = "flyteorg/flyte-binary"
-  version    = "0.1.10"
+  chart      = "flyte-binary"
+  version    = "v1.8.0"
+
+  depends_on = [google_container_cluster.flyte_cluster, google_container_node_pool.flyte_node_pool]
 }
