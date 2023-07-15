@@ -4,11 +4,6 @@ resource "google_container_cluster" "flyte_cluster" {
   location                 = "${local.region}-b"
   remove_default_node_pool = true
   initial_node_count       = 2
-  master_auth {
-    client_certificate_config {
-      issue_client_certificate = false
-    }
-  }
 
   node_config {
     disk_size_gb = 10
