@@ -27,6 +27,7 @@ resource "google_project_iam_custom_role" "flyte_backend_role" {
     "container.pods.create",
     "container.pods.get",
     "container.pods.list",
+    "container.clusters.getCredentials",
   ]
 }
 
