@@ -12,6 +12,12 @@ resource "google_container_cluster" "flyte_cluster" {
       local_ssd_count = 0
     }
   }
+
+  master_auth {
+    client_certificate_config {
+      issue_client_certificate = true
+    }
+  }
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
 }
 
