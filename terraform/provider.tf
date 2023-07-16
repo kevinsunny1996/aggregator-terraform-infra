@@ -11,6 +11,7 @@ provider "helm" {
   kubernetes {
     host  = "https://${google_container_cluster.flyte_cluster.endpoint}"
     token = data.google_client_config.default.access_token
+    cluster_ca_certificate = module.gke_auth.cluster_ca_certificate
   }
 }
 
