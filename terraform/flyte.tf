@@ -1,4 +1,10 @@
-# TODO - Create GKE cluster post enabling relevant APIs 
+######################################################################################################################
+# This section creates the following resources
+# 1 - GKE Cluster for Flyte
+# 2 - Nodepool with 2 nodes each using e2-micro instances
+# 3 - Helm Release for Flyte
+# 4 - Auth client for getting CA certificate while authenticating to cluster
+######################################################################################################################
 resource "google_container_cluster" "flyte_cluster" {
   name                     = "flyte-cluster"
   location                 = "${local.region}-b"
@@ -15,10 +21,19 @@ resource "google_container_cluster" "flyte_cluster" {
 
   master_auth {
     client_certificate_config {
-      issue_client_certificate = true
+      issue_client_certificate = false
     }
   }
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
+}
+
+module "gke_auth" {
+  source               = "terraform-google-modules/kubernetes-engine/google//modules/auth"
+
+  project_id           = local.id
+  cluster_name         = google_container_cluster.flyte_cluster.name
+  location             = google_container_cluster.flyte_cluster.location
+  use_private_endpoint = true
 }
 
 resource "google_container_node_pool" "flyte_node_pool" {
