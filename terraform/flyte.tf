@@ -28,7 +28,7 @@ resource "google_container_cluster" "flyte_cluster" {
 }
 
 module "gke_auth" {
-  source               = "terraform-google-modules/kubernetes-engine/google//modules/auth"
+  source = "terraform-google-modules/kubernetes-engine/google//modules/auth"
 
   project_id           = local.id
   cluster_name         = google_container_cluster.flyte_cluster.name
