@@ -9,8 +9,8 @@ provider "random" {
 
 provider "helm" {
   kubernetes {
-    host                   = "https://${google_container_cluster.flyte_cluster.endpoint}"
-    token                  = data.google_client_config.default.access_token
+    host  = "https://${google_container_cluster.flyte_cluster.endpoint}"
+    token = data.google_client_config.default.access_token
   }
 
   depends_on = [google_container_cluster.flyte_cluster, google_container_node_pool.flyte_node_pool]

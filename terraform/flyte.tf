@@ -39,10 +39,10 @@ resource "google_container_node_pool" "flyte_node_pool" {
   node_count = 2
 
   management {
-    auto_repair = true
+    auto_repair  = true
     auto_upgrade = true
   }
-  
+
   autoscaling {
     min_node_count = 2
     max_node_count = 4
