@@ -65,11 +65,12 @@ resource "google_container_node_pool" "flyte_node_pool" {
 }
 
 resource "helm_release" "flyte_single_cluster" {
-  name       = "flyte-test-setup"
-  namespace  = "flyte"
-  repository = "https://helm.flyte.org"
-  chart      = "flyte-binary"
-  version    = "v1.8.0"
+  name             = "flyte-test-setup"
+  namespace        = "flyte"
+  create_namespace = true
+  repository       = "https://helm.flyte.org"
+  chart            = "flyte-binary"
+  version          = "v1.8.0"
 
   ################################################################################################################# 
   # Setting chart values to override the default in flyte-binary.yaml
