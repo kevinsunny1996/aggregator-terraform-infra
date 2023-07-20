@@ -58,7 +58,7 @@ resource "google_container_node_pool" "flyte_node_pool" {
     taint {
       key    = "instance_type"
       value  = "spot"
-      effect = "NO_SCHEDULE"
+      # effect = "NO_SCHEDULE"
     }
   }
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
@@ -71,6 +71,7 @@ resource "helm_release" "flyte_single_cluster" {
   repository       = "https://helm.flyte.org"
   chart            = "flyte-binary"
   version          = "v1.8.0"
+  timeout = 600
 
   ################################################################################################################# 
   # Setting chart values to override the default in flyte-binary.yaml
