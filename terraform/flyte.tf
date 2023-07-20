@@ -64,74 +64,74 @@ resource "google_container_node_pool" "flyte_node_pool" {
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
 }
 
-resource "helm_release" "flyte_single_cluster" {
-  name             = "flyte-test-setup"
-  namespace        = "flyte"
-  create_namespace = true
-  repository       = "https://helm.flyte.org"
-  chart            = "flyte-binary"
-  version          = "v1.8.0"
+# resource "helm_release" "flyte_single_cluster" {
+#   name             = "flyte-test-setup"
+#   namespace        = "flyte"
+#   create_namespace = true
+#   repository       = "https://helm.flyte.org"
+#   chart            = "flyte-binary"
+#   version          = "v1.8.0"
 
-  ################################################################################################################# 
-  # Setting chart values to override the default in flyte-binary.yaml
-  # Read more about the fields on the following reources
-  # README - https://github.com/flyteorg/flyte/tree/master/charts/flyte-binary
-  # YAML File reference - https://github.com/flyteorg/flyte/blob/master/charts/flyte-binary/values.yaml
-  #################################################################################################################
+#   ################################################################################################################# 
+#   # Setting chart values to override the default in flyte-binary.yaml
+#   # Read more about the fields on the following reources
+#   # README - https://github.com/flyteorg/flyte/tree/master/charts/flyte-binary
+#   # YAML File reference - https://github.com/flyteorg/flyte/blob/master/charts/flyte-binary/values.yaml
+#   #################################################################################################################
 
-  #################################################################################################################
-  # The flyte-binary setup considers all the components bundled up into one and if your workflow isn't heavy , this is a good one to start.
-  # Read the following doc to know more - https://docs.flyte.org/en/latest/deployment/deployment/index.html
-  # This would need GCS and CloudSQL to be referenced and overriden in the values.yml file
-  #################################################################################################################
+#   #################################################################################################################
+#   # The flyte-binary setup considers all the components bundled up into one and if your workflow isn't heavy , this is a good one to start.
+#   # Read the following doc to know more - https://docs.flyte.org/en/latest/deployment/deployment/index.html
+#   # This would need GCS and CloudSQL to be referenced and overriden in the values.yml file
+#   #################################################################################################################
 
-  # Cloud SQL override values
-  set {
-    name  = "configuration.database.dbname"
-    value = google_sql_database_instance.flyte_db_backend.name
-  }
+#   # Cloud SQL override values
+#   set {
+#     name  = "configuration.database.dbname"
+#     value = google_sql_database_instance.flyte_db_backend.name
+#   }
 
-  set {
-    name  = "configuration.database.host"
-    value = google_sql_database_instance.flyte_db_backend.public_ip_address
-  }
+#   set {
+#     name  = "configuration.database.host"
+#     value = google_sql_database_instance.flyte_db_backend.public_ip_address
+#   }
 
-  set {
-    name  = "configuration.database.password"
-    value = google_sql_user.flyte_db_user.password
-  }
+#   set {
+#     name  = "configuration.database.password"
+#     value = google_sql_user.flyte_db_user.password
+#   }
 
-  set {
-    name  = "configuration.database.port"
-    value = "5432"
-  }
+#   set {
+#     name  = "configuration.database.port"
+#     value = "5432"
+#   }
 
-  set {
-    name  = "configuration.database.username"
-    value = google_sql_user.flyte_db_user.name
-  }
+#   set {
+#     name  = "configuration.database.username"
+#     value = google_sql_user.flyte_db_user.name
+#   }
 
-  # GCS values override
-  set {
-    name  = "configuration.storage.metadataContainer"
-    value = module.flyte_gcs_backend.name
-  }
+#   # GCS values override
+#   set {
+#     name  = "configuration.storage.metadataContainer"
+#     value = module.flyte_gcs_backend.name
+#   }
 
-  set {
-    name  = "configuration.storage.provider"
-    value = "gcs"
-  }
+#   set {
+#     name  = "configuration.storage.provider"
+#     value = "gcs"
+#   }
 
-  set {
-    name  = "configuration.storage.providerConfig.gcs.project"
-    value = local.id
-  }
+#   set {
+#     name  = "configuration.storage.providerConfig.gcs.project"
+#     value = local.id
+#   }
 
-  set {
-    name  = "configuration.storage.userDataContainer"
-    value = module.flyte_gcs_backend.name
-  }
+#   set {
+#     name  = "configuration.storage.userDataContainer"
+#     value = module.flyte_gcs_backend.name
+#   }
 
 
-  depends_on = [google_container_cluster.flyte_cluster, google_container_node_pool.flyte_node_pool]
-}
+#   depends_on = [google_container_cluster.flyte_cluster, google_container_node_pool.flyte_node_pool]
+# }
