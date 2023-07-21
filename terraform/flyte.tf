@@ -55,11 +55,11 @@ resource "google_container_node_pool" "flyte_node_pool" {
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
     ]
-    taint {
-      key    = "instance_type"
-      value  = "spot"
-      effect = "NO_SCHEDULE"
-    }
+    # taint {
+    #   key   = "instance_type"
+    #   value = "spot"
+    #   effect = "NO_SCHEDULE"
+    # }
   }
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
 }
@@ -72,18 +72,18 @@ resource "helm_release" "flyte_single_cluster" {
   chart            = "flyte-binary"
   version          = "v1.8.0"
 
-  ################################################################################################################# 
-  # Setting chart values to override the default in flyte-binary.yaml
-  # Read more about the fields on the following reources
-  # README - https://github.com/flyteorg/flyte/tree/master/charts/flyte-binary
-  # YAML File reference - https://github.com/flyteorg/flyte/blob/master/charts/flyte-binary/values.yaml
-  #################################################################################################################
+  #   ################################################################################################################# 
+  #   # Setting chart values to override the default in flyte-binary.yaml
+  #   # Read more about the fields on the following reources
+  #   # README - https://github.com/flyteorg/flyte/tree/master/charts/flyte-binary
+  #   # YAML File reference - https://github.com/flyteorg/flyte/blob/master/charts/flyte-binary/values.yaml
+  #   #################################################################################################################
 
-  #################################################################################################################
-  # The flyte-binary setup considers all the components bundled up into one and if your workflow isn't heavy , this is a good one to start.
-  # Read the following doc to know more - https://docs.flyte.org/en/latest/deployment/deployment/index.html
-  # This would need GCS and CloudSQL to be referenced and overriden in the values.yml file
-  #################################################################################################################
+  #   #################################################################################################################
+  #   # The flyte-binary setup considers all the components bundled up into one and if your workflow isn't heavy , this is a good one to start.
+  #   # Read the following doc to know more - https://docs.flyte.org/en/latest/deployment/deployment/index.html
+  #   # This would need GCS and CloudSQL to be referenced and overriden in the values.yml file
+  #   #################################################################################################################
 
   # Cloud SQL override values
   set {
