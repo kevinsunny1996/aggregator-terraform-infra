@@ -7,13 +7,13 @@ provider "random" {
 
 }
 
-# provider "helm" {
-#   kubernetes {
-#     host                   = "https://${google_container_cluster.flyte_cluster.endpoint}"
-#     token                  = data.google_client_config.default.access_token
-#     cluster_ca_certificate = base64decode(google_container_cluster.flyte_cluster.master_auth.0.cluster_ca_certificate)
-#   }
-# }
+provider "helm" {
+  kubernetes {
+    host                   = "https://${google_container_cluster.flyte_cluster.endpoint}"
+    token                  = data.google_client_config.default.access_token
+    cluster_ca_certificate = base64decode(google_container_cluster.flyte_cluster.master_auth.0.cluster_ca_certificate)
+  }
+}
 
 terraform {
   required_providers {
@@ -33,10 +33,10 @@ terraform {
       version = "~> 3.5.1"
     }
 
-    # helm = {
-    #   source  = "hashicorp/helm"
-    #   version = "~> 2.10.1"
-    # }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.10.1"
+    }
 
   }
 
