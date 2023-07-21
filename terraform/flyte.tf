@@ -55,11 +55,6 @@ resource "google_container_node_pool" "flyte_node_pool" {
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
     ]
-    # taint {
-    #   key   = "instance_type"
-    #   value = "spot"
-    #   effect = "NO_SCHEDULE"
-    # }
   }
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
 }
