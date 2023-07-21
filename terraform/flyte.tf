@@ -127,5 +127,5 @@ resource "helm_release" "flyte_single_cluster" {
   }
 
 
-  depends_on = [google_container_cluster.flyte_cluster, google_container_node_pool.flyte_node_pool]
+  depends_on = [google_container_cluster.flyte_binary_cluster, google_container_node_pool.flyte_node_pool]
 }
