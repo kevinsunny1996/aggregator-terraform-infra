@@ -5,8 +5,8 @@
 # 3 - Helm Release for Flyte
 # 4 - Auth client for getting CA certificate while authenticating to cluster
 ######################################################################################################################
-resource "google_container_cluster" "flyte_binary_cluster" {
-  name                     = "flyte-binary-cluster"
+resource "google_container_cluster" "flyte_cluster" {
+  name                     = "flyte-cluster"
   location                 = "${local.region}-b"
   remove_default_node_pool = true
   initial_node_count       = 2
@@ -33,9 +33,9 @@ resource "google_container_cluster" "flyte_binary_cluster" {
 
 
 resource "google_container_node_pool" "flyte_binary_node_pool" {
-  name       = "flyte--binary-np"
+  name       = "flyte-binary-np"
   location   = "${local.region}-b"
-  cluster    = google_container_cluster.flyte_binary_cluster.name
+  cluster    = google_container_cluster.flyte_cluster.name
   node_count = 2
 
   management {
@@ -127,5 +127,5 @@ resource "helm_release" "flyte_single_cluster" {
   }
 
 
-  depends_on = [google_container_cluster.flyte_binary_cluster, google_container_node_pool.flyte_binary_node_pool]
+  depends_on = [google_container_cluster.flyte_cluster, google_container_node_pool.flyte_binary_node_pool]
 }
