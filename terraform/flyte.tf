@@ -32,8 +32,8 @@ resource "google_container_cluster" "flyte_binary_cluster" {
 }
 
 
-resource "google_container_node_pool" "flyte_node_pool" {
-  name       = "flyte-np"
+resource "google_container_node_pool" "flyte_binary_node_pool" {
+  name       = "flyte--binary-np"
   location   = "${local.region}-b"
   cluster    = google_container_cluster.flyte_binary_cluster.name
   node_count = 2
@@ -127,5 +127,5 @@ resource "helm_release" "flyte_single_cluster" {
   }
 
 
-  depends_on = [google_container_cluster.flyte_binary_cluster, google_container_node_pool.flyte_node_pool]
+  depends_on = [google_container_cluster.flyte_binary_cluster, google_container_node_pool.flyte_binary_node_pool]
 }
