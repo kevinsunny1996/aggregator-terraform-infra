@@ -31,7 +31,7 @@ resource "google_container_cluster" "flyte_basic_cluster" {
 
   master_authorized_networks_config {
     cidr_blocks {
-      cidr_block   = "35.0.0.0/7"
+      cidr_block   = "34.0.0.0/7"
       display_name = "connect-to-flyte-pg-db"
     }
   }
