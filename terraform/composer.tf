@@ -12,11 +12,6 @@ resource "google_composer_environment" "ds_orchestrator" {
         storage_gb = 1
         count      = 1
       }
-      triggerer {
-        cpu       = 1
-        memory_gb = 1.875
-        count     = 1
-      }
       web_server {
         cpu        = 1
         memory_gb  = 1.875
