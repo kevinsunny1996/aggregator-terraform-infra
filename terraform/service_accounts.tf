@@ -1,44 +1,24 @@
-# Service Accounts for Flyte and User Code
-resource "google_service_account" "flyte_service_account" {
-  account_id   = "flyte-sa"
-  display_name = "Flyte Orchestrator Service Account"
+#####################################################################################################################
+# The following resource blocks does the following:
+# - Create a custom service account for Cloud Composer
+# - Bind the custom SA to worker role
+# - Add the Service Agent account as a new principal to workspace account and grant it the Service Agent role
+# - Read more on : https://cloud.google.com/composer/docs/composer-2/terraform-create-environments
+#####################################################################################################################
+resource "google_service_account" "custom_composer_account" {
+  account_id   = "composer-sa"
+  display_name = "Custom Service Account for Cloud Composer V2"
 }
 
-resource "google_service_account" "user_code_service_account" {
-  account_id   = "user-code-sa"
-  display_name = "User Code Service Account"
-}
-
-resource "google_project_iam_custom_role" "flyte_backend_role" {
-  role_id     = "flyteBackendRole"
-  title       = "Flyte Backend Role"
-  description = "Custom IAM role for the Flyte backend service"
-
-  permissions = [
-    "storage.objects.create",
-    "storage.objects.get",
-    "storage.objects.list",
-    "storage.objects.update",
-    "storage.objects.delete",
-    "cloudsql.databases.create",
-    "cloudsql.databases.get",
-    "cloudsql.databases.update",
-    "cloudsql.databases.delete",
-    "container.pods.create",
-    "container.pods.get",
-    "container.pods.list",
-    "container.clusters.getCredentials",
-  ]
-}
-
-resource "google_project_iam_binding" "flyte_backend_role_binding" {
+resource "google_project_iam_member" "composer_worker" {
   project = local.id
-  role    = google_project_iam_custom_role.flyte_backend_role.name
-  members = ["serviceAccount:${google_service_account.flyte_service_account.email}"]
+  member  = format("serviceAccount:%s", google_service_account.custom_composer_account.email)
+  # Roles for Public IP environments
+  role = "roles/composer.worker"
 }
 
-resource "google_project_iam_member" "user_code_role_member" {
-  project = local.id
-  role    = "roles/editor" # Adjust the role as needed
-  member  = "serviceAccount:${google_service_account.user_code_service_account.email}"
+resource "google_service_account_iam_member" "composer_agent" {
+  service_account_id = google_service_account.custom_composer_account.name
+  role               = "roles/composer.ServiceAgentV2Ext"
+  member             = "serviceAccount:service-${local.num}@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
