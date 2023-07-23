@@ -126,6 +126,11 @@ resource "helm_release" "flyte_basic_cluster" {
     value = module.flyte_gcs_backend.name
   }
 
+  set {
+    name = "deployment.waitForDB.image.tag"
+    value = "14-alpine"
+  }
+
 
   depends_on = [google_container_cluster.flyte_basic_cluster, google_container_node_pool.flyte_basic_node_pool]
 }
