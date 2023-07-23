@@ -28,6 +28,14 @@ resource "google_container_cluster" "flyte_basic_cluster" {
       issue_client_certificate = false
     }
   }
+
+  master_authorized_networks_config {
+    cidr_blocks {
+      cidr_block   = "35.0.0.0/7"
+      display_name = "connect-to-flyte-pg-db"
+    }
+  }
+
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
 }
 
