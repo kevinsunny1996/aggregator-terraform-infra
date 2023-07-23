@@ -127,7 +127,7 @@ resource "helm_release" "flyte_basic_cluster" {
   }
 
   set {
-    name = "deployment.waitForDB.image.tag"
+    name  = "deployment.waitForDB.image.tag"
     value = "14-alpine"
   }
 
