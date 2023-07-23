@@ -29,13 +29,13 @@ resource "google_composer_environment" "ds_orchestrator" {
         min_count  = 1
         max_count  = 4
       }
-      software_config {
-        image_version = "composer-2.3.4-airflow-2.5.3"
-      }
+    }
+    software_config {
+      image_version = "composer-2.3.4-airflow-2.5.3"
+    }
 
-      node_config {
-        service_account = google_service_account.custom_composer_account.email
-      }
+    node_config {
+      service_account = google_service_account.custom_composer_account.email
     }
   }
 }
