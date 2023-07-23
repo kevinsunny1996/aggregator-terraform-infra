@@ -20,5 +20,5 @@ resource "google_project_iam_member" "composer_worker" {
 resource "google_service_account_iam_member" "composer_agent" {
   service_account_id = google_service_account.custom_composer_account.name
   role               = "roles/composer.ServiceAgentV2Ext"
-  member             = "serviceAccount:service-${local.num}@cloudcomposer-accounts.iam.gserviceaccount.com"
+  member             = "serviceAccount:service-${local.number}@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
