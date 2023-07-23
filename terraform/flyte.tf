@@ -5,8 +5,8 @@
 # 3 - Helm Release for Flyte
 # 4 - Auth client for getting CA certificate while authenticating to cluster
 ######################################################################################################################
-resource "google_container_cluster" "flyte_binary_cluster" {
-  name                     = "flyte-binary-cluster"
+resource "google_container_cluster" "flyte_basic_cluster" {
+  name                     = "flyte-basic-cluster"
   location                 = "${local.region}-b"
   remove_default_node_pool = true
   initial_node_count       = 2
@@ -32,10 +32,10 @@ resource "google_container_cluster" "flyte_binary_cluster" {
 }
 
 
-resource "google_container_node_pool" "flyte_node_pool" {
-  name       = "flyte-np"
+resource "google_container_node_pool" "flyte_basic_node_pool" {
+  name       = "flyte-basic-np"
   location   = "${local.region}-b"
-  cluster    = google_container_cluster.flyte_binary_cluster.name
+  cluster    = google_container_cluster.flyte_basic_cluster.name
   node_count = 2
 
   management {
@@ -59,8 +59,8 @@ resource "google_container_node_pool" "flyte_node_pool" {
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
 }
 
-resource "helm_release" "flyte_single_cluster" {
-  name             = "flyte-test-setup"
+resource "helm_release" "flyte_basic_cluster" {
+  name             = "flyte-basic-setup"
   namespace        = "flyte"
   create_namespace = true
   repository       = "https://helm.flyte.org"
@@ -127,5 +127,5 @@ resource "helm_release" "flyte_single_cluster" {
   }
 
 
-  depends_on = [google_container_cluster.flyte_binary_cluster, google_container_node_pool.flyte_node_pool]
+  depends_on = [google_container_cluster.flyte_basic_cluster, google_container_node_pool.flyte_basic_node_pool]
 }
