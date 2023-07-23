@@ -34,6 +34,8 @@ resource "google_container_cluster" "flyte_basic_cluster" {
       cidr_block   = "34.0.0.0/7"
       display_name = "connect-to-flyte-pg-db"
     }
+
+    gcp_public_cidrs_access_enabled = false
   }
 
   depends_on = [google_project_service.compute_api, google_project_service.container_api]
