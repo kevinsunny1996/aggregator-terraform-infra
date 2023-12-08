@@ -6,7 +6,7 @@ module "gcs_api_extract" {
   version         = "~> 3.4"
   project_id      = local.id
   location        = local.gs_region
-  names           = ["spotify-web-api-extracts"]
+  names           = ["rawg-api-extracts"]
   prefix          = local.name
   set_admin_roles = true
   #   admins          = ["group:${local.owner}"]
@@ -33,6 +33,7 @@ module "flyte_gcs_backend" {
   location        = local.gs_region
   names           = ["flyte-storage-backend"]
   prefix          = local.name
+  force_destroy   = true
   set_admin_roles = true
   #   admins          = ["group:${local.owner}"]
   versioning = {
