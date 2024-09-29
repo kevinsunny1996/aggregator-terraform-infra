@@ -21,3 +21,9 @@ resource "google_project_iam_binding" "bq_job_creator" {
   role    = "roles/bigquery.jobUser"
   members = ["serviceAccount:${google_service_account.airflow_user_sa.email}"]
 }
+
+resource "google_project_iam_binding" "bq_data_viewer" {
+  project = local.id
+  role    = "roles/bigquery.dataViewer"
+  members = ["serviceAccount:${google_service_account.airflow_user_sa.email}"]
+}
